@@ -1,0 +1,90 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:PayablesData="clr-namespace:PayablesData;assembly=PayablesData" mc:Ignorable="d" x:Class="WpfTransferPayment.MainWindow"
+        Title="Transfer Payment" Height="400" Width="1000">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" Grid.Row="0" x:Name="GrpFrom" MinHeight="300"  
+                  Header="Transfer From" Margin="20" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.9*" />                    
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Invoice No.: " Grid.Column="0" Grid.Row="0" Margin="10"/>
+                <TextBlock Text="Invoice Date: " Grid.Column="0" Grid.Row="1" Margin="10"/>
+                <TextBlock Text="Invoice Total: " Grid.Column="0" Grid.Row="2" Margin="10"/>
+                <TextBlock Text="Payment Total: " Grid.Column="0" Grid.Row="3" Margin="10"/>
+                <TextBlock Text="Transfer Amount: " Grid.Column="0" Grid.Row="5" Margin="10"/>
+
+                <TextBox Grid.Column="1" Grid.Row="0" x:Name="FromInvNoTextBox" Text="{Binding InvoiceNumber}" Margin="10"/>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="FromInvDateTextBox" Text="{Binding InvoiceDate}" IsEnabled="False" Margin="10"/>
+                <TextBox Grid.Column="1" Grid.Row="2" x:Name="FromInvTotTextBox" Text="{Binding InvoiceTotal}" IsEnabled="False" Margin="10"/>
+                <TextBox Grid.Column="1" Grid.Row="3" x:Name="FromPaymTotTextBox" Text="{Binding PaymentTotal}" IsEnabled="False" Margin="10" />
+                <TextBox Visibility="Hidden" Grid.Column="1" Grid.Row="4" Margin="10" />
+                <TextBox Grid.Column="1" Grid.Row="5" x:Name="FromTrsAmountTextBox" Margin="10"/>
+
+                <Button x:Name="GetFromInvoiceButton" Content="Get Invoice" Grid.Column="2" Grid.Row="0" Click="GetFromInvoiceButton_Click" Margin="8"/>
+                <Button x:Name="TransferButton" Content="Make Transfer" Grid.Column="2" Grid.Row="5" Click="TransferButton_Click" Margin="8"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Grid.Row="0" x:Name="GrpBoxTO" MinHeight="300"
+                  Header="Transfer To" Margin="20" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.8*" />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Invoice No.: " Grid.Column="0" Grid.Row="0" Margin="10"/>
+                <TextBlock Text="Invoice Date: " Grid.Column="0" Grid.Row="1" Margin="10"/>
+                <TextBlock Text="Invoice Total: " Grid.Column="0" Grid.Row="2" Margin="10"/>
+                <TextBlock Text="Balance Due: " Grid.Column="0" Grid.Row="3" Margin="10"/>
+                
+                <TextBox Grid.Column="1" Grid.Row="0" x:Name="ToInvNoTextBox" Margin="10" Text="{Binding InvoiceNumber}"/>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="ToInvDateTextBox" IsEnabled="False" Margin="10" Text="{Binding InvoiceDate, Mode=OneWay}"/>
+                <TextBox Grid.Column="1" Grid.Row="2" x:Name="ToInvTotTextBox" IsEnabled="False" Margin="10" Text="{Binding InvoiceTotal, Mode=OneWay}"/>
+                <TextBox Grid.Column="1" Grid.Row="3" x:Name="ToBalanceDueTextBox" IsEnabled="False" Margin="10" Text="{Binding BalanceDue, Mode=OneWay}"/>
+                <TextBox Visibility="Hidden" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" Margin="10" />
+
+                <Button x:Name="GetToInvoiceButton" Content="Get Invoice" Grid.Column="2" Grid.Row="0" Click="GetToInvoiceButton_Click" Margin="8"/>
+                <Button x:Name="ExitButton" Content="Exit" Grid.Column="2" Grid.Row="5" Click="ExitButton_Click" Margin="8"/>
+            </Grid>
+        </GroupBox>       
+
+    </Grid>
+</Window>
